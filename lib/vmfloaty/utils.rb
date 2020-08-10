@@ -187,10 +187,11 @@ class Utils
   def self.get_service_config(config, options)
     # The top-level url, user, and token values in the config file are treated as defaults
     service_config = {
-      'url'   => config['url'],
-      'user'  => config['user'],
-      'token' => config['token'],
-      'type'  => config['type'] || 'vmpooler',
+      'url'      => config['url'],
+      'user'     => config['user'],
+      'token'    => config['token'],
+      'type'     => config['type'] || 'vmpooler',
+      'priority' => config['priority'],
     }
 
     if config['services']
@@ -208,7 +209,7 @@ class Utils
       end
     end
 
-    # Prioritize an explicitly specified url, user, or token if the user provided one
+    # Prioritize an explicitly specified priority, url, user, or token if the user provided one
     service_config['priority'] = options.priority unless options.priority.nil?
     service_config['url'] = options.url unless options.url.nil?
     service_config['token'] = options.token unless options.token.nil?
